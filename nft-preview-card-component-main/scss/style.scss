@@ -12,12 +12,16 @@ html {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: $mainBg;
     font-family: "Outfit", sans-serif;
+}
+
+hr {
+    background-color: hsl(215, 32%, 27%);
 }
 
 .card {
@@ -29,11 +33,41 @@ body {
     overflow: hidden;
 
     &__img {
+        position: relative;
         width: 100%;
         border-radius: 10px;
         overflow: hidden;
+        cursor: pointer;
+        position: relative;
 
-            img {
+            &:hover::after, &:hover .eye-icon {
+                display: block;
+                animation: showUp .8s forwards;
+            }
+
+            &::after {
+                content: ' ';
+                display: none;
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: hsla(178, 100%, 50%, 0.566);
+            }
+
+
+            .eye-icon {
+                display: none;
+                opacity: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 10;
+            }
+            .img {
                 width: 100%;
                 object-fit: cover;
                 object-position: center;
@@ -43,14 +77,81 @@ body {
         padding: 2em 0;
     }
     &__title {
+        display: inline;
         font-size: 2.3rem;
         font-weight: 500;
-        padding-block-end: 1em;
+        transition: color .3s;
+
+            &:hover {
+                color: $hoverColor;
+            }
     }
     &__text {
         font-size: 1.8rem;
         color: $paragraphColor;
         font-weight: 300;
-        padding-block-end: 1em;
+        padding: 1em 0 1.5em;
+    }
+    &__text--decorated {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.8em;
+
+            span {
+                color: $hoverColor;
+                font-weight: 500;
+                
+                    img {
+                        width: 17px;
+                        vertical-align: middle;
+                        padding-inline-end: .25em;
+                    }
+            }
+            p {
+                color: $paragraphColor;
+
+                    img {
+                        width: 22px;
+                        vertical-align: middle;
+                        padding-inline-end: .1em;
+                    }
+            }
+    }
+    &__footer {
+        display: flex;
+        align-items: center;
+        padding: 2em 0 1em;
+        gap: 2em;
+        border-top: 1px solid hsl(215, 32%, 27%);
+
+            img {
+                height: 40px;
+                width: 40px;
+                border: 1px solid hsl(0, 0%, 100%);
+                border-radius: 50%;
+            }
+            p {
+                font-size: 1.8rem;
+                color: $paragraphColor;
+                    span {
+                        color: hsl(0, 0%, 100%);
+                        cursor: pointer;
+                        transition: color .3s;
+
+                            &:hover {
+                                color: $hoverColor;
+                            }
+                    }
+            }
+    }
+}
+
+
+@keyframes showUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
