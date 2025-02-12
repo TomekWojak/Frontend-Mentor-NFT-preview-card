@@ -1,3 +1,5 @@
+@use './_colors' as *;
+
 
 * {
     margin: 0;
@@ -5,12 +7,50 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsl(217, 54%, 11%);
+    background-color: $mainBg;
     font-family: "Outfit", sans-serif;
 }
 
+.card {
+    width: 350px;
+    padding: 2em;
+    color: hsl(0, 0%, 100%);
+    background-color: $cardBg;
+    border-radius: 20px;
+    overflow: hidden;
+
+    &__img {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+    }
+    &__body {
+        padding: 2em 0;
+    }
+    &__title {
+        font-size: 2.3rem;
+        font-weight: 500;
+        padding-block-end: 1em;
+    }
+    &__text {
+        font-size: 1.8rem;
+        color: $paragraphColor;
+        font-weight: 300;
+        padding-block-end: 1em;
+    }
+}
